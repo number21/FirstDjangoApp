@@ -1,3 +1,7 @@
+{% load static from staticfiles %}
+
+
+
 <DOCTYPE! html>
 <html lang="uk">
   <head>
@@ -7,7 +11,7 @@
     <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/bootstrap/3.3.5/css/bootstrap.min.css">
       <link rel="stylesheet"
-          href="/static/main.css">
+          href="{% static "main.css" %}">
   </head>
   <body>
     <!-- Start Container -->
@@ -46,16 +50,15 @@
               </tr>
             </thead>
             <tbody>
-            {% for task in tasks %}
               <tr>
-                <td>{{ forloop.counter }}</td>
+                <td>1</td>
                 <td>тут має бути колір</td>
-                <td><a href="#">{{ task.name }}</a></td>
-                <td><a href="#">{{ task.customer }}</a></td>
-                <td>{{ task.status }}</td>
-                <td>{{ task.date_start }}</td>
-                <td>{{ task.date_end }}</td>
-                <td>{{ task.estimated_time }}</td>
+                <td><a href="#">Виписати піздюлей</a></td>
+                <td><a href="#">Я</a></td>
+                <td>В процесі</td>
+                <td>В процесі</td>
+                <td>В процесі</td>
+                <td>В процесі</td>
                 <td>
                   <div class="btn-group">
                     <button type="button" class="btn btn-default dropdown-toggle"
@@ -70,7 +73,52 @@
                   </div>
                 </td>
               </tr>
-            {% endfor %}
+              <tr>
+                <td>2</td>
+                <td>тут має бути колір</td>
+                <td><a href="#">Запілити якусь бадягу</a></td>
+                <td><a href="#">Я</a></td>
+                <td>Зроблено</td>
+                <td>В процесі</td>
+                <td>В процесі</td>
+                <td>В процесі</td>
+                <td>
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle"
+                            data-toggle="dropdown">Дія
+                      <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><a href="#">Редагувати</a></li>
+                      <li><a href="#">Змінити статус</a></li>
+                      <li><a href="#">Видалити</a></li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>тут має бути колір</td>
+                <td><a href="#">Добавити фічу у стовпець колір</a></td>
+                <td><a href="#">Я</a></td>
+                <td>Отримано</td>
+                <td>В процесі</td>
+                <td>В процесі</td>
+                <td>В процесі</td>
+                <td>
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle"
+                            data-toggle="dropdown">Дія
+                      <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><a href="#">Редагувати</a></li>
+                      <li><a href="#">Змінити статус</a></li>
+                      <li><a href="#">Видалити</a></li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
             </tbody>
           </table>
           <!-- End Students Listing -->
