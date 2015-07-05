@@ -3,6 +3,7 @@ from django.http import HttpResponse
 # Create your views here.
 
 def task_list(request):
+    # TODO : Підключити БД
     tasks = (
         {"id": 1,
          "name": "Виписати піздюлей",
