@@ -63,9 +63,9 @@
                       <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
-                      <li><a href="#">Редагувати</a></li>
+                      <li><a href="{% url "task_edit" task.id %}">Редагувати</a></li>
                       <li><a href="#">Змінити статус</a></li>
-                      <li><a href="#">Видалити</a></li>
+                      <li><a href="{% url "task_delete" task.id %}">Видалити</a></li>
                     </ul>
                   </div>
                 </td>
