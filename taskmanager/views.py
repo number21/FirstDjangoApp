@@ -37,7 +37,7 @@ def task_list(request):
 
 
     )
-    return render(request, 'test.html', {"tasks": tasks})
+    return render(request, 'task_list.html', {"tasks": tasks})
 
 def task_add(request):
     return HttpResponse("Here will have an add form, soon")

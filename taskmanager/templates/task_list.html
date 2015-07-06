@@ -1,34 +1,17 @@
-<!DOCTYPE html>
-<html lang="uk">
-  <head>
-    <meta charset="UTF-8"/>
-	  <title>TaskKiller</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/bootstrap/3.3.5/css/bootstrap.min.css">
-      <link rel="stylesheet"
-          href="/static/main.css">
-  </head>
-  <body>
-    <!-- Start Container -->
-    <div class="container">
+{% extends "base.html" %}
+{% load static from staticfiles %}
 
-      <!-- Start Header -->
-      <div class="row" id="header">
-        <div class="col-xs-12">
-          <h1>Сервіс відслідкувування завдань і виписуваня піздюлей(мотивації)</h1>
-        </div>
-      </div>
-      <!-- End Header -->
 
-      <!-- Start Content Columns -->
-      <div class="row" id="content-columns">
-        <div class="col-xs-12" id="content-column">
+{% block meta_title %} TaskKiller {% endblock meta_title %}
 
+{% block content %}
+          <!--
+          TODO: Придумати як додати сповіщення
           <div class="alert alert-warning" role="alert">Завдання додане успішно</div>
+          -->
 
           <h2>Список завдань</h2>
-          <a href="#" class="btn btn-primary">Додати завдання</a>
+          <a href="{% url "task_add" %}" class="btn btn-primary">Додати завдання</a>
 
           <!-- Start Students Listing -->
           <table class="table">
@@ -85,23 +68,4 @@
               <li><a href="#">&raquo;</a></li>
             </ul>
           </nav>
-        </div>
-      </div>
-      <!-- End Content Columns -->
-
-      <!-- Start Footer -->
-      <div class="row" id="footer">
-        <div class="col-xs-12">
-          &copy; 2015 Завжди ваш сервіс піздюлей Азазаззаза
-        </div>
-      </div>
-      <!-- End Footer -->
-
-    </div>
-    <!-- End Container -->
-    <!-- Javascripts Inclusion -->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-  </body>
-
-</html>
+{% endblock content %}

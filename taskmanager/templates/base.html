@@ -1,19 +1,15 @@
 {% load static from staticfiles %}
-
-<!--
-    TODO: Зробити шаблони
--->
-
 <!DOCTYPE html>
 <html lang="uk">
   <head>
     <meta charset="UTF-8"/>
-	  <title>TaskKiller</title>
+	  <title>{% block meta_title %}{% endblock meta_title %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/bootstrap/3.3.5/css/bootstrap.min.css">
       <link rel="stylesheet"
-          href="{% static "main.css" %}">
+          href="/static/main.css">
+      {% block extra_css %} {% endblock extra_css %}
   </head>
   <body>
     <!-- Start Container -->
@@ -30,112 +26,9 @@
       <!-- Start Content Columns -->
       <div class="row" id="content-columns">
         <div class="col-xs-12" id="content-column">
-
-          <div class="alert alert-warning" role="alert">Завдання додане успішно</div>
-
-          <h2>Список завдань</h2>
-          <a href="#" class="btn btn-primary">Додати завдання</a>
-
-          <!-- Start Students Listing -->
-          <table class="table">
-            <thead>
-              <tr>
-                <th><a href="#">#</a></th>
-                <th>Колір</th>
-                <th><a href="#">Назва завдання &uarr;</a></th>
-                <th><a href="#">Замовник</a></th>
-                <th><a href="#">Статус</a></th>
-                <th><a href="#">Дата початку</a></th>
-                <th><a href="#">Дата закінчення</a></th>
-                <th><a href="#">Часу залишилось</a></th>
-                <th>Дії</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>тут має бути колір</td>
-                <td><a href="#">Виписати піздюлей</a></td>
-                <td><a href="#">Я</a></td>
-                <td>В процесі</td>
-                <td>В процесі</td>
-                <td>В процесі</td>
-                <td>В процесі</td>
-                <td>
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-default dropdown-toggle"
-                            data-toggle="dropdown">Дія
-                      <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                      <li><a href="#">Редагувати</a></li>
-                      <li><a href="#">Змінити статус</a></li>
-                      <li><a href="#">Видалити</a></li>
-                    </ul>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>тут має бути колір</td>
-                <td><a href="#">Запілити якусь бадягу</a></td>
-                <td><a href="#">Я</a></td>
-                <td>Зроблено</td>
-                <td>В процесі</td>
-                <td>В процесі</td>
-                <td>В процесі</td>
-                <td>
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-default dropdown-toggle"
-                            data-toggle="dropdown">Дія
-                      <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                      <li><a href="#">Редагувати</a></li>
-                      <li><a href="#">Змінити статус</a></li>
-                      <li><a href="#">Видалити</a></li>
-                    </ul>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>тут має бути колір</td>
-                <td><a href="#">Добавити фічу у стовпець колір</a></td>
-                <td><a href="#">Я</a></td>
-                <td>Отримано</td>
-                <td>В процесі</td>
-                <td>В процесі</td>
-                <td>В процесі</td>
-                <td>
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-default dropdown-toggle"
-                            data-toggle="dropdown">Дія
-                      <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                      <li><a href="#">Редагувати</a></li>
-                      <li><a href="#">Змінити статус</a></li>
-                      <li><a href="#">Видалити</a></li>
-                    </ul>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <!-- End Students Listing -->
-          <nav>
-            <ul class="pagination">
-              <li><a href="#">&laquo;</a></li>
-              <li><a href="#">1</a></li>
-              <li class="active"><a href="#">2</a></li>
-              <li><a href="#">3</a></li>
-              <li><a href="#">4</a></li>
-              <li><a href="#">5</a></li>
-              <li><a href="#">&raquo;</a></li>
-            </ul>
-          </nav>
+        {% block content %}        {% endblock content %}
         </div>
+
       </div>
       <!-- End Content Columns -->
 
@@ -152,6 +45,7 @@
     <!-- Javascripts Inclusion -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    {% block extra_javascript %} {% endblock extra_javascript %}
   </body>
 
 </html>
