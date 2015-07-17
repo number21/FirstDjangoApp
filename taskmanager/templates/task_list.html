@@ -32,7 +32,13 @@
             {% for task in tasks %}
               <tr>
                 <td>{{ forloop.counter }}</td>
-                <td>тут має бути колір</td>
+                <td>
+                    {% if task.picture %}
+                    <img class="img-circle" src="{{ task.picture.url }}" height="30" width="30" />
+                    {% else %}
+                    <img class="img-circle" src="{% static "img/default_user.png" %}" height="30" width="30" />
+                    {% endif %}
+                </td>
                 <td><a href="#">{{ task.name }}</a></td>
                 <td><a href="#">{{ task.customer }}</a></td>
                 <td>{{ task.status }}</td>

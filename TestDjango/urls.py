@@ -16,7 +16,10 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.conf import settings
+from django.views.static import serve
 from taskmanager import views
+
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
@@ -27,3 +30,11 @@ urlpatterns = [
 ]
 
 urlpatterns += staticfiles_urlpatterns()
+
+
+if settings.DEBUG:
+    urlpatterns += [
+        url(r'^media/(?P<path>.*)$', serve, {
+            'document_root': settings.MEDIA_ROOT,
+        }),
+   ]
