@@ -11,7 +11,7 @@ def task_list(request):
 
     if order_by in ("name", "customer", "date_end"):
         tasks = tasks.order_by(order_by)
-        if request.GET.get("reverse", "") =="1":
+        if request.GET.get("reverse", "") == "1":
             tasks = tasks.reverse()
 
     page = request.GET.get('page')
