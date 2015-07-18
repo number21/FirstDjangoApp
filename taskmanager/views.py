@@ -26,7 +26,6 @@ def task_list(request):
         tasks = paginator.page(paginator.num_pages)
 
 
-
     return render(request, 'task_list.html', {"tasks": tasks})
 
 def task_add(request):
