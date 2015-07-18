@@ -7,14 +7,14 @@ from .models import Task
 
 def task_list(request):
     tasks = Task.objects.all()
-    paginator = Paginator(tasks, 2) # Show 2 task per page
+
     order_by = request.GET.get("order_by", "")
 
     if order_by in ("name", "customer", "date_end"):
         tasks = tasks.order_by(order_by)
         if request.GET.get("reverse", "") == "1":
             tasks = tasks.reverse()
-
+    paginator = Paginator(tasks, 2) # Show 2 task per page
     page = request.GET.get('page')
     try:
         tasks = paginator.page(page)
