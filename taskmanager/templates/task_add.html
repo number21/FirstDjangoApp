@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load static from staticfiles %}
+
+
+{% block meta_title %} TaskKiller {% endblock meta_title %}
+
+{% block content %}
+    <!--
+    TODO: Придумати як додати сповіщення
+    <div class="alert alert-warning" role="alert">Завдання додане успішно</div>
+    elapsed time
+    -->
+
+    <h2>Додати завдання</h2>
+    <form action="#" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+        <div>
+            <label for="name"> Назва завдання </label>
+            <input type="text" value="" name="name" id="name" placeholder="Введіть назву завдання" required/>
+        </div>
+        <div>
+            <label for="customer"> Замовник </label>
+            <input type="text" value="" name="customer" id="customer" placeholder="Введіть ім'я замовника" required/>
+        </div>
+        <div>
+            <label for="date_start"> Дата початку </label>
+            <input type="text" value="" name="date_start" id="date_start" placeholder="Введіть дату початку"/>
+        </div>
+        <div>
+            <label for="date_end"> Дата кінця </label>
+            <input type="text" value="" name="date_end" id="date_end" placeholder="Введіть дату кінця"/>
+        </div>
+        <div>
+            <label for="status">Статус</label>
+            <select name="status" id="status">
+                <option value="">Виберіть статус</option>
+                <option value="1">Прийнято</option>
+                <option value="2">В процесі</option>
+                <option value="3">Виконано</option>
+            </select>
+        </div>
+        <div>
+            <label for="picture"> Картинка </label>
+            <input type="file" value="" name="picture" id="picture"/>
+        </div>
+        <div class="controls">
+            <input type="submit" value="Додати" name="ok_button">
+            <input type="submit" value="Скасувати" name="cancel_button">
+        </div>
+
+    </form>
+
+
+{% endblock content %}

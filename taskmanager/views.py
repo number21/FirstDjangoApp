@@ -1,12 +1,13 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.core.urlresolvers import reverse
 from .models import Task
 # Create your views here.
 
 def task_list(request):
     tasks = Task.objects.all()
-    paginator = Paginator(tasks, 2) # Show 25 contacts per page
+    paginator = Paginator(tasks, 2) # Show 2 task per page
     order_by = request.GET.get("order_by", "")
 
     if order_by in ("name", "customer", "date_end"):
@@ -27,7 +28,14 @@ def task_list(request):
     return render(request, 'task_list.html', {"tasks": tasks})
 
 def task_add(request):
-    return HttpResponse("Here will have an add form, soon")
+
+    if request.method == "POST":
+        if request.POST.get("cancel_button") is not None:
+            return HttpResponseRedirect(reverse("home"))
+        elif request.POST.get("ok_button") is not None:
+            pass
+    else:
+        return render(request, 'task_add.html', {})
 
 def task_edit(request, taskid):
     return HttpResponse("Here will have an edit form {}, soon".format(taskid))
