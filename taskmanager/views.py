@@ -25,6 +25,8 @@ def task_list(request):
         # If page is out of range (e.g. 9999), deliver last page of results.
         tasks = paginator.page(paginator.num_pages)
 
+
+
     return render(request, 'task_list.html', {"tasks": tasks})
 
 def task_add(request):
