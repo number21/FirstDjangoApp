@@ -24,9 +24,9 @@ from taskmanager import views
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', views.task_list, name='home'),
-    url(r'^tasks/add$', views.task_add, name='task_add'),
-    url(r'^tasks/(?P<taskid>[0-9]+)/edit$', views.task_edit, name='task_edit'),
-    url(r'^tasks/(?P<taskid>[0-9]+)/delete$', views.task_delete, name='task_delete'),
+    url(r'^tasks/add$', views.TaskCreate.as_view(), name='task_add'),
+    url(r'^tasks/(?P<pk>[0-9]+)/edit$', views.TaskUpdate.as_view(), name='task_edit'),
+    url(r'^tasks/(?P<pk>[0-9]+)/delete$', views.TaskDelete.as_view(), name='task_delete'),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

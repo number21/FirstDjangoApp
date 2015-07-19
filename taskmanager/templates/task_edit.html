@@ -11,12 +11,12 @@
     elapsed time
     -->
 
-    <h2>Додати завдання</h2>
-    <form action="{% url "task_add" %}" method="post" enctype="multipart/form-data">
+    <h2>Редагувати завдання</h2>
+    <form action="" method="post" enctype="multipart/form-data">
     {% csrf_token %}
-        {{ form.as_p }}
+    {{ form.as_p }}
         <div class="controls">
-            <input type="submit" value="Додати" name="ok_button">
+            <input type="submit" value="Зберегти" name="ok_button">
         </div>
 
     </form>
