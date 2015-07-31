@@ -4,6 +4,12 @@ from django.core.urlresolvers import reverse_lazy
 from django.views.generic.edit import UpdateView
 from django.views.generic.edit import CreateView
 from django.views.generic.edit import DeleteView
+from django.forms import ModelForm
+
+
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Submit
+from crispy_forms.bootstrap import FormActions
 
 from .models import Task
 
@@ -31,17 +37,68 @@ def task_list(request):
         tasks = paginator.page(paginator.num_pages)
     return render(request, 'task_list.html', {"tasks": tasks})
 
+
+class TaskCreateForm(ModelForm):
+    class Meta:
+        model = Task
+        fields = "__all__"
+    def __init__(self, *args, **kwargs):
+        super(TaskCreateForm, self).__init__(*args, **kwargs)
+
+        self.helper = FormHelper(self)
+
+        # set form tag attributes
+        self.helper.form_action = reverse_lazy('task_add')
+        self.helper.form_method = 'POST'
+        self.helper.form_class = 'form-horizontal'
+
+        # set form field properties
+        self.helper.help_text_inline = True
+        self.helper.html5_required = True
+        self.helper.label_class = 'col-sm-2 control-label'
+        self.helper.field_class = 'col-sm-10'
+        # add buttons
+        self.helper.layout[-1] = FormActions(Submit('add_button', u'Зберегти', css_class="btn btn-primary"))
+
+
 class TaskCreate(CreateView):
     model = Task
-    fields = "__all__"
+    form_class = TaskCreateForm
     template_name = "task_add.html"
-    success_url = "/"
+    def get_success_url(self):
+        return "/?status_message=Завдання успішно додано" % reverse_lazy("home")
+
+
+class TaskUpdateForm(ModelForm):
+    class Meta:
+        model = Task
+        fields = "__all__"
+    def __init__(self, *args, **kwargs):
+        super(TaskUpdateForm, self).__init__(*args, **kwargs)
+
+        self.helper = FormHelper(self)
+
+        # set form tag attributes
+        self.helper.form_action = reverse_lazy('task_edit',
+            kwargs={'pk': kwargs['instance'].id})
+        self.helper.form_method = 'POST'
+        self.helper.form_class = 'form-horizontal'
+
+        # set form field properties
+        self.helper.help_text_inline = True
+        self.helper.html5_required = True
+        self.helper.label_class = 'col-sm-2 control-label'
+        self.helper.field_class = 'col-sm-10'
+        # add buttons
+        self.helper.layout[-1] = FormActions(Submit('add_button', u'Зберегти', css_class="btn btn-primary"))
+
 
 class TaskUpdate(UpdateView):
     model = Task
-    fields = "__all__"
     template_name = "task_edit.html"
-    success_url = "/"
+    form_class = TaskUpdateForm
+    def get_success_url(self):
+        return "%s?status_message=Завдання успішно збережено" % reverse_lazy("home")
 
 class TaskDelete(DeleteView):
     model = Task

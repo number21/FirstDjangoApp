@@ -1,25 +1,12 @@
 {% extends "base.html" %}
 {% load static from staticfiles %}
-
+{% load crispy_forms_tags %}
 
 {% block meta_title %} TaskKiller {% endblock meta_title %}
 
 {% block content %}
-    <!--
-    TODO: Придумати як додати сповіщення
-    <div class="alert alert-warning" role="alert">Завдання додане успішно</div>
-    elapsed time
-    -->
 
     <h2>Редагувати завдання</h2>
-    <form action="" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-        <div class="controls">
-            <input type="submit" value="Зберегти" name="ok_button">
-        </div>
-
-    </form>
-
+    {% crispy form %}
 
 {% endblock content %}

@@ -35,5 +35,6 @@ class Task(models.Model):
         blank=True,
         verbose_name=u"Фото",
         null=True)
+
     def __str__(self):
         return "{} {}".format(self.name, self.customer)

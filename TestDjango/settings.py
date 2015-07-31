@@ -26,7 +26,7 @@ SECRET_KEY = '%igm(-z08r6k8$r=80vv4lxgoruif=*tbk98^&5--8rq03#cl0'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 # Application definition
 
@@ -37,6 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
     'taskmanager',
 )
 
