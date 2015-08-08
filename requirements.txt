@@ -1,5 +1,13 @@
-Django==1.8.3
+Django
 Pillow
 django-crispy-forms
+dj-database-url
+dj-static
+gunicorn
+heroku
+psycopg2
+static
+whitenoise
+wsgiref
 
 

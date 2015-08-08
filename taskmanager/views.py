@@ -57,6 +57,7 @@ class TaskCreateForm(ModelForm):
         self.helper.html5_required = True
         self.helper.label_class = 'col-sm-2 control-label'
         self.helper.field_class = 'col-sm-10'
+        self.helper.render_unmentioned_fields = True
         # add buttons
         self.helper.layout[-1] = FormActions(Submit('add_button', u'Зберегти', css_class="btn btn-primary"))
 
@@ -89,6 +90,7 @@ class TaskUpdateForm(ModelForm):
         self.helper.html5_required = True
         self.helper.label_class = 'col-sm-2 control-label'
         self.helper.field_class = 'col-sm-10'
+        self.helper.render_unmentioned_fields = True
         # add buttons
         self.helper.layout[-1] = FormActions(Submit('add_button', u'Зберегти', css_class="btn btn-primary"))
 
