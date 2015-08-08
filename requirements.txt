@@ -1,13 +1,6 @@
-Django
+django-toolbelt
 Pillow
 django-crispy-forms
-dj-database-url
-dj-static
-gunicorn
-heroku
-psycopg2
-static
-whitenoise
 
 
 
