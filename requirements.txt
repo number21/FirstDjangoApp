@@ -8,6 +8,6 @@ heroku
 psycopg2
 static
 whitenoise
-wsgiref
+
 
 
