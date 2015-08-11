@@ -14,10 +14,13 @@
             <thead>
             <tr>
                 <th><a href="#">#</a></th>
+                <!-- TODO: Додати колір в базу,(1,2,3)-(Red,Yellow,Blue)
+                     TODO: Оживити колонку додати сортування
+                -->
                 <th>Колір</th>
                 <th>
                     <a href="{% url "home" %}?order_by=name{% if order_by == 'name' and reverse != '1' %}&amp;reverse=1{% endif %}">
-                        Назва завдання
+                        Назва
                         {% if order_by == 'name' and reverse != '1' %}&uarr;
                             {% elif order_by == 'name' and reverse == '1' %}&darr;
                         {% endif %}</a>
