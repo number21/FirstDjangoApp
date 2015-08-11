@@ -1,56 +1,60 @@
 {% load static from staticfiles %}
 <!DOCTYPE html>
 <html lang="uk">
-  <head>
+<head>
     <meta charset="UTF-8"/>
-	  <title>{% block meta_title %}{% endblock meta_title %}</title>
+    <title>{% block meta_title %}{% endblock meta_title %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/bootstrap/3.3.5/css/bootstrap.min.css">
-      <link rel="stylesheet"
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.15.35/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet"
           href="/static/main.css">
 
-      {% block extra_css %} {% endblock extra_css %}
-  </head>
-  <body>
-    <!-- Start Container -->
-    <div class="container">
+    {% block extra_css %} {% endblock extra_css %}
+</head>
+<body>
+<!-- Start Container -->
+<div class="container">
 
-      <!-- Start Header -->
-      <div class="row" id="header">
+    <!-- Start Header -->
+    <div class="row" id="header">
         <div class="col-xs-12">
-          <h1>Сервіс відслідкувування завдань і виписуваня піздюлей(мотивації)</h1>
+            <h1>Сервіс відслідкувування завдань і виписуваня піздюлей(мотивації)</h1>
         </div>
-      </div>
-      <!-- End Header -->
+    </div>
+    <!-- End Header -->
 
-      <!-- Start Content Columns -->
-      <div class="row" id="content-columns">
+    <!-- Start Content Columns -->
+    <div class="row" id="content-columns">
         <div class="col-xs-12" id="content-column">
-        {% if request.GET.status_message %}
-            <div class="alert alert-warning" role="alert">{{ request.GET.status_message }}</div>
-        {% endif %}
-        {% block content %}        {% endblock content %}
+            {% if request.GET.status_message %}
+                <div class="alert alert-warning" role="alert">{{ request.GET.status_message }}</div>
+            {% endif %}
+            {% block content %}        {% endblock content %}
         </div>
-
-      </div>
-      <!-- End Content Columns -->
-
-      <!-- Start Footer -->
-      <div class="row" id="footer">
-        <div class="col-xs-12">
-          &copy; 2015 Завжди ваш сервіс піздюлей Азазаззаза
-        </div>
-      </div>
-      <!-- End Footer -->
 
     </div>
-    <!-- End Container -->
-    <!-- Javascripts Inclusion -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <!-- End Content Columns -->
 
-    {% block extra_javascript %} {% endblock extra_javascript %}
-  </body>
+    <!-- Start Footer -->
+    <div class="row" id="footer">
+        <div class="col-xs-12">
+            &copy; 2015 Завжди ваш сервіс піздюлей Азазаззаза
+        </div>
+    </div>
+    <!-- End Footer -->
+
+</div>
+<!-- End Container -->
+<!-- Javascripts Inclusion -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment-with-locales.min.js"></script>
+<script src="https://cdn.jsdelivr.net/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.15.35/js/bootstrap-datetimepicker.min.js"></script>
+<script src="{% static "main.js" %}"></script>
+{% block extra_javascript %} {% endblock extra_javascript %}
+</body>
 
 </html>
