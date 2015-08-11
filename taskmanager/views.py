@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 from django.shortcuts import render
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.urlresolvers import reverse_lazy
@@ -13,8 +15,23 @@ from crispy_forms.bootstrap import FormActions
 
 from .models import Task
 
+TASKS_PER_PAGE = 10
 
-# Create your views here.
+
+def paginate_list(request, obj_list):
+    paginator = Paginator(obj_list, TASKS_PER_PAGE)  # Show 10 task per page
+    page = request.GET.get('page')
+    try:
+        result = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        result = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        result = paginator.page(paginator.num_pages)
+
+    return result
+
 
 def task_list(request):
     tasks = Task.objects.all()
@@ -25,16 +42,8 @@ def task_list(request):
         tasks = tasks.order_by(order_by)
         if request.GET.get("reverse", "") == "1":
             tasks = tasks.reverse()
-    paginator = Paginator(tasks, 10)  # Show 10 task per page
-    page = request.GET.get('page')
-    try:
-        tasks = paginator.page(page)
-    except PageNotAnInteger:
-        # If page is not an integer, deliver first page.
-        tasks = paginator.page(1)
-    except EmptyPage:
-        # If page is out of range (e.g. 9999), deliver last page of results.
-        tasks = paginator.page(paginator.num_pages)
+
+    tasks = paginate_list(request, tasks)
     return render(request, 'task_list.html', {"tasks": tasks})
 
 
@@ -42,6 +51,7 @@ class TaskCreateForm(ModelForm):
     class Meta:
         model = Task
         fields = "__all__"
+
     def __init__(self, *args, **kwargs):
         super(TaskCreateForm, self).__init__(*args, **kwargs)
 
@@ -66,6 +76,7 @@ class TaskCreate(CreateView):
     model = Task
     form_class = TaskCreateForm
     template_name = "task_add.html"
+
     def get_success_url(self):
         return "/?status_message=Завдання успішно додано" % reverse_lazy("home")
 
@@ -74,6 +85,7 @@ class TaskUpdateForm(ModelForm):
     class Meta:
         model = Task
         fields = "__all__"
+
     def __init__(self, *args, **kwargs):
         super(TaskUpdateForm, self).__init__(*args, **kwargs)
 

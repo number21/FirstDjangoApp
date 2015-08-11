@@ -1,6 +1,8 @@
-django-toolbelt
+Django
+psycopg2
+gunicorn
+dj-database-url
+dj-static
+static
 Pillow
 django-crispy-forms
-
-
-
