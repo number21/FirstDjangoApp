@@ -111,8 +111,10 @@ class TaskUpdate(UpdateView):
     model = Task
     template_name = "task_edit.html"
     form_class = TaskUpdateForm
+
     def get_success_url(self):
         return "%s?status_message=Завдання успішно збережено" % reverse_lazy("home")
+
 
 class TaskDelete(DeleteView):
     model = Task
