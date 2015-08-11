@@ -67,7 +67,7 @@ class TaskCreate(CreateView):
     form_class = TaskCreateForm
     template_name = "task_add.html"
     def get_success_url(self):
-        return "/?status_message=Завдання успішно додано" % reverse_lazy("home")
+        return "%s?status_message=Завдання успішно додано" % reverse_lazy("home")
 
 
 class TaskUpdateForm(ModelForm):
