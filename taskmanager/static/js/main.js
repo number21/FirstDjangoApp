@@ -37,7 +37,7 @@ function diffTime() {
             continue;
         }
         var years = diff.getUTCFullYear() - 1970;
-        var months = diff.getUTCMonth() - 1;
+        var months = diff.getUTCMonth();
         var days = diff.getUTCDate() - 1;
         var hours = diff.getUTCHours();
         var minutes = diff.getUTCMinutes();

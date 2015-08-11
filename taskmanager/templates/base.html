@@ -30,7 +30,7 @@
     <div class="row" id="content-columns">
         <div class="col-xs-12" id="content-column">
             {% if request.GET.status_message %}
-                <div class="alert alert-warning" role="alert">{{ request.GET.status_message }}</div>
+                <div class="alert alert-success" role="alert">{{ request.GET.status_message }}</div>
             {% endif %}
             {% block content %}        {% endblock content %}
         </div>
