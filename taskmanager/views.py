@@ -25,7 +25,7 @@ def task_list(request):
         tasks = tasks.order_by(order_by)
         if request.GET.get("reverse", "") == "1":
             tasks = tasks.reverse()
-    paginator = Paginator(tasks, 2)  # Show 2 task per page
+    paginator = Paginator(tasks, 10)  # Show 10 task per page
     page = request.GET.get('page')
     try:
         tasks = paginator.page(page)
