@@ -37,6 +37,7 @@ class Task(models.Model):
         blank=True,
         verbose_name=u"Фото",
         null=True)
-
+    # TODO: Додати поле опису задачі
+    # TODO: Додати завантаження декількох картинок(Або картинки в поле опису задачі)
     def __str__(self):
         return "{} {}".format(self.name, self.customer)
