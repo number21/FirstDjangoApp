@@ -5,18 +5,12 @@
 {% block meta_title %} TaskKiller {% endblock meta_title %}
 
 {% block content %}
-    <!--
-    TODO: Придумати як додати сповіщення
-    <div class="alert alert-warning" role="alert">Завдання додане успішно</div>
-    elapsed time
-    -->
-
     <h2>Ви впевнені, що хочете видалити "{{ object }}"</h2>
     <form action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
 
         <div class="controls">
-            <input type="submit" value="Підтвердити" name="ok_button">
+            <input class="btn btn-danger" type="submit" value="Підтвердити" name="ok_button">
         </div>
 
     </form>

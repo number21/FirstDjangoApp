@@ -115,7 +115,7 @@ class TaskUpdate(UpdateView):
     def get_success_url(self):
         return "%s?status_message=Завдання успішно збережено" % reverse_lazy("home")
 
-
+# TODO: Обновити вигляд видалення до твітербутсрапу
 class TaskDelete(DeleteView):
     model = Task
     template_name = "task_confirm_delete.html"

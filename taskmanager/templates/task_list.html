@@ -60,9 +60,9 @@
                 <td><a href="#">{{ task.name }}</a></td>
                 <td><a href="#">{{ task.customer }}</a></td>
                 <td>{{ task.status }}</td>
-                <td>{{ task.date_start }}</td>
-                <td>{{ task.date_end | date:"D d M Y" }}</td>
-                <td></td>
+                <td>{{ task.date_start  | date:"Y-m-d" }}</td>
+                <td class="end">{{ task.date_end | date:"Y-m-d" }}</td>
+                <td class="elapsed"></td>
                 <td>
                     <div class="btn-group">
                         <button type="button" class="btn btn-default dropdown-toggle"
