@@ -23,7 +23,7 @@ function diffTime() {
         // console.log(elapseds);
         if (years < 0) {
             elapseds.item(i).innerHTML = "Дедлайн минув";
-            console.log(elapseds.item(i).className.indexOf(punish));
+            // console.log(elapseds.item(i).className.indexOf(punish));
             if (elapseds.item(i).className.indexOf(punish) < 0) {
                 elapseds.item(i).className = elapseds.item(i).className + " " + punish;
             }
