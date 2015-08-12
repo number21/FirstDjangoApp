@@ -6,8 +6,8 @@ from django.db import models
 class Task(models.Model):
 
     class Meta(object):
-        verbose_name = u"Завдання"
-        verbose_name_plural = u"Завдання"
+        verbose_name = "Завдання"
+        verbose_name_plural = "Завдання"
 
     name = models.CharField(
         max_length=256,
@@ -28,15 +28,27 @@ class Task(models.Model):
         blank=False,
         verbose_name=u"Дата кінця",
         null=True)
+
+    PS = "Готово"
+    IP = "Відкрите"
+    AG = "Прийнято"
+    STATUS_CHOICES = (
+        (PS, 'Готово'),
+        (IP, 'Відкрите'),
+        (AG, 'Прийнято'))
     status = models.CharField(
-        max_length=256,
-        blank=False,
+        max_length=15,
+        choices=STATUS_CHOICES,
+        default=IP,
         verbose_name=u"Статус")
 
     picture = models.ImageField(
         blank=True,
-        verbose_name=u"Фото",
+        verbose_name=u"Зображення",
         null=True)
+    description = models.TextField(
+        blank=True,
+        verbose_name=u"Опис")
 
     # TODO: Додати поле опису задачі
     # TODO: Додати завантаження декількох картинок

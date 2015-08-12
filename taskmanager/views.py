@@ -10,7 +10,7 @@ from django.forms import ModelForm
 
 
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit
+from crispy_forms.layout import Submit, Layout, HTML, Field
 from crispy_forms.bootstrap import FormActions
 
 from .models import Task
@@ -68,8 +68,10 @@ class BaseForm(ModelForm):
         self.helper.label_class = 'col-sm-2 control-label'
         self.helper.field_class = 'col-sm-10'
         self.helper.render_unmentioned_fields = True
-        # add buttons
-        self.helper.layout[-1] = FormActions(Submit('add_button', u'Зберегти', css_class="btn btn-primary"))
+        self.helper.layout[-1] = Layout(
+            Field('description', css_class='input-xlarge'),
+            FormActions(Submit('add_button', u'Сохранить', css_id='submit-id-send_button')))
+
 
 
 

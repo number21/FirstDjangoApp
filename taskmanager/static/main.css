@@ -16,3 +16,10 @@ nav {
 .reward {
     color :green;
 }
+#submit-id-send_button {
+    position: relative;
+    left: 200px;
+}
+.form_header {
+    text-align: center;
+}

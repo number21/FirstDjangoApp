@@ -10,7 +10,7 @@
         <a href="{% url "task_add" %}" class="btn btn-primary" style="float: right">Додати завдання</a>
     </div><br>
     <!-- Start Students Listing -->
-    <table class="table table-hover">
+    <table class="table table-striped">
         {% with order_by=request.GET.order_by reverse=request.GET.reverse %}
             <!-- TODO: Додати колір в базу,(1,2,3)-(Red,Yellow,Blue)
                  TODO: Оживити колонку додати сортування
@@ -46,16 +46,11 @@
             </tr>
             </thead>
         {% endwith %}
-        <tbody>
+        <tbody class="">
         {% for task in tasks %}
-            <tr {% if task.status == 'Відкрите' %}
-                    class="info"
-                {% elif task.status == 'Готово' %}
-                    class="success"
-                {% endif %}
-                     >
+            <tr>
                 <td>{{ forloop.counter }}</td>
-                <td><a href="#">{{ task.name }}</a></td>
+                <td><a href="{% url "task_edit" task.id %}">{{ task.name }}</a></td>
                 <td><a href="#">{{ task.customer }}</a></td>
                 <td class="status">{{ task.status }}</td>
                 <td>{{ task.date_start  | date:"Y-m-d" }}</td>
