@@ -46,19 +46,19 @@ def task_list(request):
     tasks = paginate_list(request, tasks)
     return render(request, 'task_list.html', {"tasks": tasks})
 
-
-class TaskCreateForm(ModelForm):
+class BaseForm(ModelForm):
     class Meta:
         model = Task
         fields = "__all__"
 
     def __init__(self, *args, **kwargs):
-        super(TaskCreateForm, self).__init__(*args, **kwargs)
+
+        super(ModelForm, self).__init__(*args, **kwargs)
 
         self.helper = FormHelper(self)
 
         # set form tag attributes
-        self.helper.form_action = reverse_lazy('task_add')
+        #self.helper.form_action = reverse_lazy('task_add')
         self.helper.form_method = 'POST'
         self.helper.form_class = 'form-horizontal'
 
@@ -70,6 +70,15 @@ class TaskCreateForm(ModelForm):
         self.helper.render_unmentioned_fields = True
         # add buttons
         self.helper.layout[-1] = FormActions(Submit('add_button', u'Зберегти', css_class="btn btn-primary"))
+
+
+
+class TaskCreateForm(BaseForm):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper.form_action = reverse_lazy('task_add')
+
 
 
 class TaskCreate(CreateView):
@@ -81,35 +90,18 @@ class TaskCreate(CreateView):
         return "%s?status_message=Завдання успішно додано" % reverse_lazy("home")
 
 
-class TaskUpdateForm(ModelForm):
-    class Meta:
-        model = Task
-        fields = "__all__"
+class TaskUpdateForm(BaseForm):
 
     def __init__(self, *args, **kwargs):
-        super(TaskUpdateForm, self).__init__(*args, **kwargs)
-
-        self.helper = FormHelper(self)
-
-        # set form tag attributes
+        super().__init__(*args, **kwargs)
         self.helper.form_action = reverse_lazy('task_edit',
             kwargs={'pk': kwargs['instance'].id})
-        self.helper.form_method = 'POST'
-        self.helper.form_class = 'form-horizontal'
 
-        # set form field properties
-        self.helper.help_text_inline = True
-        self.helper.html5_required = True
-        self.helper.label_class = 'col-sm-2 control-label'
-        self.helper.field_class = 'col-sm-10'
-        self.helper.render_unmentioned_fields = True
-        # add buttons
-        self.helper.layout[-1] = FormActions(Submit('add_button', u'Зберегти', css_class="btn btn-primary"))
 
 
 class TaskUpdate(UpdateView):
     model = Task
-    template_name = "task_edit.html"
+    template_name = "task_add.html"
     form_class = TaskUpdateForm
 
     def get_success_url(self):

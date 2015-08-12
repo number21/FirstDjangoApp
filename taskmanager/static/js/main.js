@@ -46,10 +46,12 @@ function diffTime() {
         elapseds.item(i).innerHTML = strBuilder;
 
     }
-    t = setTimeout('diffTime()', 500);
 }
+function addClass(SetElements,item) {
 
+}
 $(document).ready(function () {
     initDateFields();
     diffTime();
+    setInterval('diffTime()', 500);
 });
