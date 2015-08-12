@@ -46,6 +46,7 @@ def task_list(request):
     tasks = paginate_list(request, tasks)
     return render(request, 'task_list.html', {"tasks": tasks})
 
+
 class BaseForm(ModelForm):
     class Meta:
         model = Task
@@ -58,7 +59,7 @@ class BaseForm(ModelForm):
         self.helper = FormHelper(self)
 
         # set form tag attributes
-        #self.helper.form_action = reverse_lazy('task_add')
+        # self.helper.form_action = reverse_lazy('task_add')
         self.helper.form_method = 'POST'
         self.helper.form_class = 'form-horizontal'
 
@@ -73,15 +74,11 @@ class BaseForm(ModelForm):
             FormActions(Submit('add_button', u'Зберегти', css_id='submit-id-send_button')))
 
 
-
-
-
 class TaskCreateForm(BaseForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper.form_action = reverse_lazy('task_add')
-
 
 
 class TaskCreate(CreateView):
@@ -101,7 +98,6 @@ class TaskUpdateForm(BaseForm):
             kwargs={'pk': kwargs['instance'].id})
 
 
-
 class TaskUpdate(UpdateView):
     model = Task
     template_name = "task_add.html"
@@ -110,7 +106,7 @@ class TaskUpdate(UpdateView):
     def get_success_url(self):
         return "%s?status_message=Завдання успішно збережено" % reverse_lazy("home")
 
-# TODO: Обновити вигляд видалення до твітербутсрапу
+
 class TaskDelete(DeleteView):
     model = Task
     template_name = "task_confirm_delete.html"

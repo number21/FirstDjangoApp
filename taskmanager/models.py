@@ -41,7 +41,6 @@ class Task(models.Model):
         choices=STATUS_CHOICES,
         default=IP,
         verbose_name=u"Статус")
-
     picture = models.ImageField(
         blank=True,
         verbose_name=u"Зображення",
@@ -50,7 +49,6 @@ class Task(models.Model):
         blank=True,
         verbose_name=u"Опис")
 
-    # TODO: Додати поле опису задачі
     # TODO: Додати завантаження декількох картинок
     #     (Або картинки в поле опису задачі)
 
