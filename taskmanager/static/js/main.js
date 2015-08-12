@@ -20,7 +20,7 @@ function diffTime() {
         var rewar = "reward";
         var diff = new Date(end.getTime() - start.getTime());
         var years = diff.getUTCFullYear() - 1970;
-        console.log(elapseds);
+        // console.log(elapseds);
         if (years < 0) {
             elapseds.item(i).innerHTML = "Дедлайн минув";
             console.log(elapseds.item(i).className.indexOf(punish));
