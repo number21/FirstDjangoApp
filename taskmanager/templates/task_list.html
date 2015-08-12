@@ -5,19 +5,19 @@
 {% block meta_title %} Add Task {% endblock meta_title %}
 
 {% block content %}
-    <h2>Список завдань</h2>
-    <a href="{% url "task_add" %}" class="btn btn-primary">Додати завдання</a>
-
+    <div style="text-align: center;">
+        <h2 style="display: inline;">Список завдань:</h2>
+        <a href="{% url "task_add" %}" class="btn btn-primary" style="float: right">Додати завдання</a>
+    </div><br>
     <!-- Start Students Listing -->
-    <table class="table">
+    <table class="table table-hover">
         {% with order_by=request.GET.order_by reverse=request.GET.reverse %}
+            <!-- TODO: Додати колір в базу,(1,2,3)-(Red,Yellow,Blue)
+                 TODO: Оживити колонку додати сортування
+            -->
             <thead>
             <tr>
                 <th><a href="#">#</a></th>
-                <!-- TODO: Додати колір в базу,(1,2,3)-(Red,Yellow,Blue)
-                     TODO: Оживити колонку додати сортування
-                -->
-                <th>Колір</th>
                 <th>
                     <a href="{% url "home" %}?order_by=name{% if order_by == 'name' and reverse != '1' %}&amp;reverse=1{% endif %}">
                         Назва
@@ -48,15 +48,13 @@
         {% endwith %}
         <tbody>
         {% for task in tasks %}
-            <tr>
+            <tr {% if task.status == 'Відкрите' %}
+                    class="info"
+                {% elif task.status == 'Готово' %}
+                    class="success"
+                {% endif %}
+                     >
                 <td>{{ forloop.counter }}</td>
-                <td>
-                    {% if task.picture %}
-                        <img class="img-circle" src="{{ task.picture.url }}" height="30" width="30"/>
-                    {% else %}
-                        <img class="img-circle" src="{% static "img/default_user.png" %}" height="30" width="30"/>
-                    {% endif %}
-                </td>
                 <td><a href="#">{{ task.name }}</a></td>
                 <td><a href="#">{{ task.customer }}</a></td>
                 <td class="status">{{ task.status }}</td>

@@ -30,7 +30,7 @@ function diffTime() {
             continue;
         }
         if (statuses.item(i).innerHTML == "Готово") {
-            elapseds.item(i).innerHTML = "Well done";
+            elapseds.item(i).innerHTML = "Вчасно виконано";
             if (elapseds.item(i).className.indexOf(rewar) < 0) {
                 elapseds.item(i).className = elapseds.item(i).className + " " + rewar;
             }
