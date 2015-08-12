@@ -52,6 +52,6 @@ function addClass(SetElements,item) {
 }
 $(document).ready(function () {
     initDateFields();
-    diffTime();
     setInterval('diffTime()', 500);
+    setTimeout((function(){$('.alert').stop().slideUp(500);}), 3000);
 });
