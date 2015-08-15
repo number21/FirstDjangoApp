@@ -125,9 +125,7 @@ class TaskDetail(DetailView):
         Для неавторизованного пользователя возвращает 404 ошибку
         Конечно мы можем как и в предыдущем примере использовать декоратор login_required
         """
-        object = super(TaskDetail, self).get_object()
-        if not self.request.user.is_authenticated():
-            raise Http404
-        return object
+        object_task = super(TaskDetail, self).get_object()
+        return object_task
 
 
