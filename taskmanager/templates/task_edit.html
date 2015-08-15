@@ -6,7 +6,19 @@
 
 {% block content %}
 
-    <h2>Редагувати завдання</h2>
-    {% crispy form %}
-
+    <h2>Інфо</h2>
+    <p>Назва: {{ task.name }}</p>
+    <p>Замовник: {{ task.customer }}</p>
+    <p>Дата початку: {{ task.date_start | date }}</p>
+    <p>Дата закінчення: {{ task.date_end }}</p>
+    <p>Статус: {{ task.status }}</p>
+    <div>{% if task.picture %}
+          <img src="{{ task.picture.url }}" height="300"
+               width="300" />
+        {% else %}
+          <img class="img-circle" src="{% static "img/default_user.png" %}"
+               height="30" width="30" />
+        {% endif %}</div>
+    <h3>Опис: </h3>
+    <div>{{ task.html_description | safe }}</div>
 {% endblock content %}

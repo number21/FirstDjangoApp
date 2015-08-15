@@ -6,3 +6,4 @@ dj-static
 static
 Pillow
 django-crispy-forms
+Markdown

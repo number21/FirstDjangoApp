@@ -50,7 +50,7 @@
         {% for task in tasks %}
             <tr>
                 <td>{{ forloop.counter }}</td>
-                <td><a href="{% url "task_edit" task.id %}">{{ task.name }}</a></td>
+                <td><a href="{% url "task_detail" task.id %}">{{ task.name }}</a></td>
                 <td><a href="#">{{ task.customer }}</a></td>
                 <td class="status">{{ task.status }}</td>
                 <td>{{ task.date_start  | date:"Y-m-d" }}</td>

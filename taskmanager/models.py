@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from django.db import models
+from markdown import markdown
 
 
 class Task(models.Model):
@@ -48,9 +49,16 @@ class Task(models.Model):
     description = models.TextField(
         blank=True,
         verbose_name=u"Опис")
+    html_description = models.TextField(
+        blank=True,
+        editable=False)
 
     # TODO: Додати завантаження декількох картинок
     #     (Або картинки в поле опису задачі)
 
     def __str__(self):
         return "{} {}".format(self.name, self.customer)
+
+    def save(self):
+        self.html_description = markdown(self.description)
+        super(Task, self).save()

@@ -6,7 +6,9 @@ from django.core.urlresolvers import reverse_lazy
 from django.views.generic.edit import UpdateView
 from django.views.generic.edit import CreateView
 from django.views.generic.edit import DeleteView
+from django.views.generic import DetailView
 from django.forms import ModelForm
+from django.http import Http404
 
 
 from crispy_forms.helper import FormHelper
@@ -111,3 +113,21 @@ class TaskDelete(DeleteView):
     model = Task
     template_name = "task_confirm_delete.html"
     success_url = reverse_lazy("home")
+
+
+class TaskDetail(DetailView):
+    model = Task
+    context_object_name = "task"
+    template_name = 'task_edit.html'
+
+    def get_object(self):
+        """
+        Для неавторизованного пользователя возвращает 404 ошибку
+        Конечно мы можем как и в предыдущем примере использовать декоратор login_required
+        """
+        object = super(TaskDetail, self).get_object()
+        if not self.request.user.is_authenticated():
+            raise Http404
+        return object
+
+
