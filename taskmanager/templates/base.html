@@ -4,6 +4,22 @@
 <head>
     <meta charset="UTF-8"/>
     <title>{% block meta_title %}{% endblock meta_title %}</title>
+    <!-- Modal Boilerplate -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel"><!-- --></h4>
+                </div>
+                <div class="modal-body"><!-- --></div>
+                <div class="modal-footer"><!-- --></div>
+            </div>
+        </div>
+    </div>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -55,6 +71,7 @@
 <!-- End Container -->
 <!-- Javascripts Inclusion -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment-with-locales.min.js"></script>
 <script src="https://cdn.jsdelivr.net/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.15.35/js/bootstrap-datetimepicker.min.js"></script>

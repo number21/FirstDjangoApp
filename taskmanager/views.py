@@ -8,7 +8,6 @@ from django.views.generic.edit import CreateView
 from django.views.generic.edit import DeleteView
 from django.views.generic import DetailView
 from django.forms import ModelForm
-from django.http import Http404
 
 
 from crispy_forms.helper import FormHelper
@@ -122,8 +121,7 @@ class TaskDetail(DetailView):
 
     def get_object(self):
         """
-        Для неавторизованного пользователя возвращает 404 ошибку
-        Конечно мы можем как и в предыдущем примере использовать декоратор login_required
+        Task view
         """
         object_task = super(TaskDetail, self).get_object()
         return object_task
