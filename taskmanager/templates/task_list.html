@@ -9,6 +9,7 @@
         <h2 style="display: inline;">Список завдань:</h2>
         <a href="{% url "task_add" %}" class="btn btn-primary" style="float: right">Додати завдання</a>
     </div><br>
+    <img class="loader" src="/static/img/loader.gif">
     <!-- Start Students Listing -->
     <table class="table table-striped">
         {% with order_by=request.GET.order_by reverse=request.GET.reverse %}
@@ -50,7 +51,7 @@
         {% for task in tasks %}
             <tr>
                 <td>{{ forloop.counter }}</td>
-                <td><a href="{% url "task_detail" task.id %}">{{ task.name }}</a></td>
+                <td><a href="{% url "task_detail" task.id %}" >{{ task.name }}</a></td>
                 <td><a href="#">{{ task.customer }}</a></td>
                 <td class="status">{{ task.status }}</td>
                 <td>{{ task.date_start  | date:"Y-m-d" }}</td>
@@ -63,7 +64,7 @@
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="{% url "task_edit" task.id %}" class="student-edit-form-link">Редагувати</a></li>
+                            <li><a href="{% url "task_edit" task.id %}" class="task-edit-form-link">Редагувати</a></li>
                             <li><a href="#">Змінити статус</a></li>
                             <li><a href="{% url "task_delete" task.id %}">Видалити</a></li>
                         </ul>

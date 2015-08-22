@@ -24,3 +24,10 @@ nav {
     position: relative;
     text-align: center;
 }
+.loader {
+    display: none;
+    overflow: visible;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+}

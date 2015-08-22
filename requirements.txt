@@ -7,3 +7,4 @@ static
 Pillow
 django-crispy-forms
 Markdown
+bleach

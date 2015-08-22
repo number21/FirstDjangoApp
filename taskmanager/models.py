@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 from django.db import models
 from markdown import markdown
+import bleach
 
 
 class Task(models.Model):
@@ -60,5 +61,5 @@ class Task(models.Model):
         return "{} {}".format(self.name, self.customer)
 
     def save(self):
-        self.html_description = markdown(self.description)
+        self.html_description = bleach.clean(markdown(self.description))
         super(Task, self).save()
