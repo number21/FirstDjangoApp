@@ -78,7 +78,7 @@ class BaseForm(ModelForm):
 class TaskCreateForm(BaseForm):
 
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+        BaseForm.__init__(self, *args, **kwargs)
         self.helper.form_action = reverse_lazy('task_add')
 
 
@@ -94,7 +94,7 @@ class TaskCreate(CreateView):
 class TaskUpdateForm(BaseForm):
 
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+        BaseForm.__init__(self, *args, **kwargs)
         self.helper.form_action = reverse_lazy('task_edit',
                                                kwargs={'pk': kwargs['instance'].id})
 
