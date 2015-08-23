@@ -30,7 +30,6 @@ urlpatterns = [
     url(r'^tasks/(?P<pk>[0-9]+)/detail$', views.TaskDetail.as_view(), name='task_detail'),
     url('', include('social.apps.django_app.urls', namespace='social')),
     url('', include('django.contrib.auth.urls', namespace='auth')),
-    url(r'^login/', views.login_page, name='login'),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
