@@ -8,3 +8,4 @@ Pillow
 django-crispy-forms
 Markdown
 bleach
+python-social-auth

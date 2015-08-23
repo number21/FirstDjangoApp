@@ -13,6 +13,7 @@ from django.forms import ModelForm
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout, HTML, Field
 from crispy_forms.bootstrap import FormActions
+from social.apps.django_app.default.models import UserSocialAuth
 
 from .models import Task
 
@@ -127,3 +128,14 @@ class TaskDetail(DetailView):
         return object_task
 
 
+def get_fb_user(request):
+    # if request.user.is_authenticated():
+    try:
+        user_fb = UserSocialAuth.objects.get(user=request.user.id)
+    except UserSocialAuth.DoesNotExist:
+        user_fb = None
+    return user_fb
+
+
+def login_page(request):
+    return render(request, 'registration/login.html')

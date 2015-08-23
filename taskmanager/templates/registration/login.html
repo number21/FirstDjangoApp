@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static from staticfiles %}
+{% block meta_title %} Hello friend {% endblock meta_title %}
+
+{% block content %}
+
+    <a class="btn btn-block btn-social btn-facebook" href="{% url 'social:begin' 'facebook' %}">
+        <i class="fa fa-facebook"></i>
+        Sign in with Facebook
+    </a>
+
+    <a class="btn btn-block btn-social btn-vk" href="{% url 'social:begin' 'vk-oauth2' %}">
+        <i class="fa fa-vk"></i>
+        Sign in with Vk
+    </a>
+    <a class="btn btn-block btn-social btn-google" href="{% url 'social:begin' 'google-oauth2' %}">
+        <i class="fa fa-google"></i>
+        Sign in with Google
+    </a>
+{% endblock content %}
