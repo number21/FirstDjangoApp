@@ -37,6 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'social.apps.django_app.default',
     'crispy_forms',
     'taskmanager',
 )
@@ -51,6 +52,32 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
 )
+AUTHENTICATION_BACKENDS = (
+    'social.backends.facebook.FacebookOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+    'social.backends.vk.VKOAuth2',
+    'social.backends.google.GoogleOAuth2',
+)
+
+LOGIN_REDIRECT_URL = '/'
+SOCIAL_AUTH_LOGIN_ERROR_URL = '/'
+
+SOCIAL_AUTH_FACEBOOK_KEY = '498590570319109'
+SOCIAL_AUTH_FACEBOOK_SECRET = 'e745ee0861f0ed015baaba81c3f59dd2'
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
+
+SOCIAL_AUTH_VK_OAUTH2_KEY = '4802000'
+SOCIAL_AUTH_VK_OAUTH2_SECRET = 'Uvjfhpqxn6WcLPOn8Fev'
+SOCIAL_AUTH_VK_OAUTH2_SCOPE = ['email']
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '898145352228-kuuv8thigvu3vj207vbjjumnc01oeh5r.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '9ptFvYM7KlJ-e_8R87WE28rt'
+SOCIAL_AUTH_GOOGLE_OAUTH2_USE_DEPRECATED_API = True
+SOCIAL_AUTH_GOOGLE_PLUS_USE_DEPRECATED_API = True
+
+
+LOGIN_URL = '/login'
+LOGOUT_URL = '/logout'
 
 ROOT_URLCONF = 'TestDjango.urls'
 
@@ -65,6 +92,10 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social.apps.django_app.context_processors.backends',
+                'social.apps.django_app.context_processors.login_redirect',
+                'social.apps.django_app.context_processors.backends',
+                'social.apps.django_app.context_processors.login_redirect',
             ],
         },
     },
