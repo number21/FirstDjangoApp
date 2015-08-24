@@ -35,19 +35,65 @@
 <!-- Start Container -->
 <div class="container">
 
-    <!-- Start Header -->
-    <div class="row" id="header">
-        <div class="col-xs-12 page-header">
-            <h1 style="text-align: center">
-                <a href="/">Розклад завдань</a>
-            </h1>
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">TODO.me <sup style="color: #a1c133">[alpha]</sup></a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="/">Мої завдання</a></li>
+                    <li><a href="/">Створені мною</a></li>
+                    <li><a href="#">Підписки</a></li>
+                    <li><a href="#">Статистика</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    {% if user and not user.is_anonymous %}
+                        <li class="dropdown">
+                            <a href="#" style="font-weight: 700"  class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{ user.get_full_name|default:user.username }}
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/">Мої завдання</a></li>
+                                <li><hr style="margin: 5px 0"></li>
+                                <li><a href="#">Налаштування</a></li>
+                                <li><hr style="margin: 5px 0"></li>
+                                <li><a href="{% url 'auth:logout' %}?next=/">Вийти</a></li>
+                            </ul>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <div class="row" id="adsense_header">
+        <div class="col-xs-12">
+            <div id="adsense_container" style="position: relative; top: 60px">
+                <div id="adsense_example" style="background: #eee; width: 728px; height: 90px; margin: 0 auto">
+                    <div style="text-align: center; font-size: 20px">
+                        Тут може бути ваша реклама
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <!-- End Header -->
 
     <!-- Start Content Columns -->
     <div class="row" id="content-columns">
         <div class="col-xs-12" id="content-column">
+            <div style=" position: relative; top: 80px">
             {% if request.GET.status_message %}
                 <div class="alert alert-success alert-dismissible" role="alert">
                     {{ request.GET.status_message }}
@@ -55,6 +101,7 @@
                 </div>
             {% endif %}
             {% block content %}{% endblock content %}
+            </div>
         </div>
 
     </div>
