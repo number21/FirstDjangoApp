@@ -13,26 +13,18 @@ Including another URLconf
     1. Add an import:  from blog import urls as blog_urls
     2. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
 """
-from django.conf.urls import include, url
+from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf import settings
 from django.views.static import serve
-from django.contrib.auth.decorators import login_required
-
-from taskmanager import views
 
 
-urlpatterns = [
+urlpatterns = patterns(
+    '',
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', login_required(views.task_list), name='home'),
-    url(r'^tasks/add$', login_required(views.TaskCreate.as_view()), name='task_add'),
-    url(r'^tasks/(?P<pk>[0-9]+)/edit$', login_required(views.TaskUpdate.as_view()), name='task_edit'),
-    url(r'^tasks/(?P<pk>[0-9]+)/delete$', login_required(views.TaskDelete.as_view()), name='task_delete'),
-    url(r'^tasks/(?P<pk>[0-9]+)/detail$', login_required(views.TaskDetail.as_view()), name='task_detail'),
-    url('', include('social.apps.django_app.urls', namespace='social')),
-    url('', include('django.contrib.auth.urls', namespace='auth')),
-]
+    url(r'^', include('taskmanager.urls')),
+)
 
 urlpatterns += staticfiles_urlpatterns()
 urlpatterns += [
