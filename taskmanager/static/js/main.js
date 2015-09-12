@@ -116,7 +116,7 @@ function initEditTaskForm(form, modal) {
                 initEditStudentForm(newform, modal);
             } else {
                 // if no form, it means success and we need to reload page
-                // to get updated students list;
+                // to get updated task list;
                 // reload after 2 seconds, so that user can read
                 // success message
                 setTimeout(function () {

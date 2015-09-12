@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.urlresolvers import reverse_lazy
 from django.views.generic.edit import UpdateView
@@ -38,8 +38,8 @@ def paginate_list(request, obj_list):
 
 
 def task_list(request):
-    tasks = Task.objects.all()
-
+    tasks = Task.objects.filter(user=request.user)
+    print(request)
     order_by = request.GET.get("order_by", "")
 
     if order_by in ("name", "customer", "date_end"):
@@ -55,7 +55,7 @@ class BaseForm(ModelForm):
     class Meta:
         model = Task
         fields = "__all__"
-
+        exclude = ('user', 'creation_date')
     def __init__(self, *args, **kwargs):
 
         super(ModelForm, self).__init__(*args, **kwargs)
@@ -89,6 +89,12 @@ class TaskCreate(CreateView):
     model = Task
     form_class = TaskCreateForm
     template_name = "task_add.html"
+
+    def form_valid(self, form):
+        instance = form.save(commit=False)
+        instance.user = self.request.user
+        instance.save()
+        return redirect(self.get_success_url())
 
     def get_success_url(self):
         return "%s?status_message=Завдання успішно додано" % reverse_lazy("home")

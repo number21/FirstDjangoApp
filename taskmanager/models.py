@@ -1,8 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from django.db import models
+from django.contrib.auth.models import User
 from markdown import markdown
 import bleach
+import hashlib
+from datetime import datetime
 
 
 class Task(models.Model):
@@ -53,6 +56,10 @@ class Task(models.Model):
     html_description = models.TextField(
         blank=True,
         editable=False)
+    user = models.ForeignKey(User, default=1)
+    creation_date = models.DateTimeField(
+        blank=True,
+        default=datetime.now)
 
     # TODO: Додати завантаження декількох картинок
     #     (Або картинки в поле опису задачі)
@@ -63,3 +70,12 @@ class Task(models.Model):
     def save(self):
         self.html_description = bleach.clean(markdown(self.description))
         super(Task, self).save()
+
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User)
+    follows = models.ManyToManyField('self', related_name='followed_by', symmetrical=False)
+
+    def gravatar_url(self):
+        return "http://www.gravatar.com/avatar/%s?s=50" % hashlib.md5(self.user.email).hexdigest()
+User.profile = property(lambda u: UserProfile.objects.get_or_create(user=u)[0])
