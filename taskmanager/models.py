@@ -57,9 +57,7 @@ class Task(models.Model):
         blank=True,
         editable=False)
     user = models.ForeignKey(User, default=1)
-    creation_date = models.DateTimeField(
-        blank=True,
-        default=datetime.now)
+    creation_date = models.DateTimeField(auto_now=True, blank=True)
 
     # TODO: Додати завантаження декількох картинок
     #     (Або картинки в поле опису задачі)
@@ -79,3 +77,7 @@ class UserProfile(models.Model):
     def gravatar_url(self):
         return "http://www.gravatar.com/avatar/%s?s=50" % hashlib.md5(self.user.email).hexdigest()
 User.profile = property(lambda u: UserProfile.objects.get_or_create(user=u)[0])
+
+# TODO: Винести все що звязано з юзером в окрему аплікацію
+# TODO: Зробити профіль юзера і можливість редагування профілю
+# TODO: Вставляти аватарку з соц мережі

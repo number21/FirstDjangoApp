@@ -20,11 +20,10 @@ from django.conf import settings
 from django.views.static import serve
 
 
-urlpatterns = patterns(
-    '',
+urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^', include('taskmanager.urls')),
-)
+]
 
 urlpatterns += staticfiles_urlpatterns()
 urlpatterns += [

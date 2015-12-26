@@ -21,18 +21,18 @@ function diffTime() {
         var diff = new Date(end.getTime() - start.getTime());
         var years = diff.getUTCFullYear() - 1970;
         // console.log(elapseds);
+        if (statuses.item(i).innerHTML == "Готово") {
+            elapseds.item(i).innerHTML = "Вчасно виконано";
+            if (elapseds.item(i).className.indexOf(rewar) < 0) {
+                elapseds.item(i).className = elapseds.item(i).className + " " + rewar;
+            }
+            continue;
+        }
         if (years < 0) {
             elapseds.item(i).innerHTML = "Дедлайн минув";
             // console.log(elapseds.item(i).className.indexOf(punish));
             if (elapseds.item(i).className.indexOf(punish) < 0) {
                 elapseds.item(i).className = elapseds.item(i).className + " " + punish;
-            }
-            continue;
-        }
-        if (statuses.item(i).innerHTML == "Готово") {
-            elapseds.item(i).innerHTML = "Вчасно виконано";
-            if (elapseds.item(i).className.indexOf(rewar) < 0) {
-                elapseds.item(i).className = elapseds.item(i).className + " " + rewar;
             }
             continue;
         }
