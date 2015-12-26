@@ -161,7 +161,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, '..', 'taskmanager', 'static'),
 )
-DEBUG = False
+DEBUG = True
 
 # ##############################################
 # For work with development/production settings
