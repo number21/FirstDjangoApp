@@ -69,15 +69,6 @@ class Task(models.Model):
         self.html_description = bleach.clean(markdown(self.description))
         super(Task, self).save()
 
-
-class UserProfile(models.Model):
-    user = models.OneToOneField(User)
-    follows = models.ManyToManyField('self', related_name='followed_by', symmetrical=False)
-
-    def gravatar_url(self):
-        return "http://www.gravatar.com/avatar/%s?s=50" % hashlib.md5(self.user.email).hexdigest()
-User.profile = property(lambda u: UserProfile.objects.get_or_create(user=u)[0])
-
 # TODO: Винести все що звязано з юзером в окрему аплікацію
 # TODO: Зробити профіль юзера і можливість редагування профілю
 # TODO: Вставляти аватарку з соц мережі

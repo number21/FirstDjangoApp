@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'social.apps.django_app.default',
     'crispy_forms',
     'taskmanager',
+    'usersmanger',
 )
 
 MIDDLEWARE_CLASSES = (

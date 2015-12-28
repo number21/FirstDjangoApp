@@ -23,6 +23,7 @@ from django.views.static import serve
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^', include('taskmanager.urls')),
+    url(r'^', include('usersmanger.urls')),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
