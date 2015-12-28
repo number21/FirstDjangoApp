@@ -69,6 +69,5 @@ class Task(models.Model):
         self.html_description = bleach.clean(markdown(self.description))
         super(Task, self).save()
 
-# TODO: Винести все що звязано з юзером в окрему аплікацію
 # TODO: Зробити профіль юзера і можливість редагування профілю
 # TODO: Вставляти аватарку з соц мережі
